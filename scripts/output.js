@@ -131,20 +131,13 @@ generateButton.addEventListener('click', () => {
         // 把权重调整成0到1之间
         const totalWeight = weightedElements.reduce((sum, item) => sum + item.weight, 0);
         if (totalWeight > 0) {
-      
           weightedElements.forEach(item => {
-        
             item.normalizedWeight = item.weight / totalWeight;
           });
-      
-          weightedElements.forEach(item => {
-        
-          });
-      
         }
         
         // 换成带权重的列表
-        elementDict[key] = weightedElements;
+        elementDict[key] = weightedElements.map(item => item.element);
       }
     
     }
