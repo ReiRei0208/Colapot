@@ -155,7 +155,7 @@ textarea {
 
 /* 调整下拉框宽度 */
 select.letRounded-select {
-    width: clamp(55px, 10%, 95px);
+    width: clamp(50px, 10%, 95px);
 }
 
 /* 特定下拉框宽度 */
