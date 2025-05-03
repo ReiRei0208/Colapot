@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colapot语壶：双端中文UI造词工具</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="biggestBox">
+        <div class="title-container">
+            <h1 class="title">Colapot语壶</h1>
+            <h2 class="subtitle"><a href="https://qm.qq.com/q/5UXQd0NfX2" target="_blank">[雨空间工作室]</a>×<a href="https://qm.qq.com/q/LFBb06zxio" target="_blank">[LangLight语灯社区]</a></h2>
+        </div>
+        <div class="button-container">
+            <button class="circle-button"><img src="icon/1.png" alt="图标1"></button>
+            <button class="circle-button"><img src="icon/2.png" alt="图标2"></button>
+            <button class="circle-button"><img src="icon/3.png" alt="图标3"></button>
+            <button class="circle-button"><img src="icon/4.png" alt="图标4"></button>
+            <button class="circle-button"><img src="icon/5.png" alt="图标5"></button>
+        </div>
+        <div class="content-container">
+        <div class="panel-box">
+            <h3 class="panel-title">关于本站</h3>
+            <hr class="panel-divider">
+            <div class="text">
+                <p>欢迎使用Colapot语壶造词工具！本工具由雨空间单人工作室(瑞瑞)制作，是WordsMaker单词生成器优化版本。以下是简单的使用指南：</p>
+
+                <h4>使用教程</h4>
+                <ol>
+                    <li>
+                        <h4>第一步：创建字母组</h4>
+                        <p>1. 选择一个字母代号（如V代表元音）<br>
+                        2. 输入该组包含的字母：<br>
+                           - 单字母可直接连续输入（如"aeiou"）或用斜杠分隔（如"a/e/i/o/u"）<br>
+                           - 复合字母必须用斜杠包裹（如"ch"应输入为"/ch/"）<br>
+                        示例：创建辅音组C，输入"bc/ch/dfgh"</p>
+                    </li>
+                    <li>
+                        <h4>第二步：设计构词规则</h4>
+                        <p>1. 使用字母代号组合构词模式（如"CVC"表示辅音-元音-辅音）<br>
+                        2. 特殊用法：<br>
+                           - 固定字符：用方括号[]包裹（如"C[ea]C"）<br>
+                           - 重复结构：用尖括号<>表示（如"C<CV>"相当于"CCVCV"）<br>
+                        3. 设置权重（0-1之间）控制该模式出现频率</p>
+                    </li>
+                    <li>
+                        <h4>第三步：调整设置</h4>
+                        <p>元素频率：开启后，可以通过选择框与滑动条为每个字母单独的设置频率权重</p>
+                    </li>
+                </ol>
+                <p class="noblank">注：所有数据会自动保存在浏览器中</p><br>
+                <p>遇到问题？优化建议？欢迎加入我们的QQ交流群：</p>
+                <p><a href="https://qm.qq.com/q/5UXQd0NfX2" target="_blank">雨空间工作室 684294381</a></p>
+                <p><a href="https://qm.qq.com/q/LFBb06zxio" target="_blank">LangLight语灯社区 577415436</a></p>
+            </div>
+        </div>
+        <div class="panel-box">
+            <h3 class="panel-title">构词元素</h3>
+            <hr class="panel-divider">
+        </div>
+        <div class="panel-box">
+            <h3 class="panel-title">构词法</h3>
+            <hr class="panel-divider">
+            <div class="morphology-container"></div>
+        </div>
+        <div class="panel-box">
+            <h3 class="panel-title">设置</h3>
+            <hr class="panel-divider">
+            
+            <div class="set">
+                <div class="set-box" id="elementFrequency">
+                    <div class="title-switch">
+                        <h4>元素频率</h4>
+                        <div class="toggle checkbox-wrapper-34">
+                          <input class='tgl tgl-ios' id="efCheck" type='checkbox'>
+                          <label class='tgl-btn' for='efCheck'></label>
+                        </div>
+                    </div>
+                    <div class="frequency-controls">
+                        <select id="frequencyDropdown" class="frequency-dropdown"></select>
+                        <input type="range" id="frequencySlider" min="0.01" max="1" step="0.01" value="1">
+                        <span style="margin-top: 1rem;" id="frequencyValue">1.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-box">
+            <h3 class="panel-title">生成</h3>
+            <hr class="panel-divider">
+        </div>
+    </div>
+    </div>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/letters.js"></script>
+    <script src="scripts/morphology.js"></script>
+    <script src="scripts/frequency.js"></script>
+    <script src="scripts/output.js"></script>
+    <script src="block/block.js"></script>
+    <footer class="version-info">BETA 3.1.0 | © 2025 雨空间工作室</footer>
+</body>
+</html>

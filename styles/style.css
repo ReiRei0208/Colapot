@@ -1,0 +1,450 @@
+@font-face {
+    font-family: 'Handmake';
+    src: url('font/handmake.ttf') format('truetype');
+}
+
+:root {
+    --primary-color: #2E7D32;
+    --background-color: #E8F5E9;
+    --input-border: #81C784;
+    --input-focus: #4CAF50;
+    --button-hover: #1B5E20;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    background-image: linear-gradient(rgba(46, 125, 50, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(46, 125, 50, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    font-family: 'Handmake', sans-serif;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0.1rem 0;
+    text-align: center;
+    color: #1b5e1f45;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+.title-container a, .title-container a:link, .title-container a:visited, .title-container a:hover, .title-container a:active {
+    color: #888888;
+    text-decoration: none;   
+}
+
+.title-container a:hover {
+    opacity: 1; 
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(1rem, 5%, 2rem);
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 1rem;
+    margin-top: 0rem;
+    color: #888888;
+}
+
+.biggestBox {
+    width: 100%;
+    padding: 0 clamp(1rem, 5%, 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 1rem 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: left;
+    margin: 0;
+    gap: 1rem;
+    width: 100%;
+    padding: 0 0 0 clamp(2rem, 5%, 3rem);
+}
+
+.control-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 0 0 1rem;
+    width: 100%;
+}
+
+.circle-button {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+}
+
+.circle-button img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.content-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    margin: clamp(0.5rem, 1%, 1rem) 0 0 0;
+    padding: clamp(1rem, 2%, 1.5rem);
+    min-height: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 行容器样式 */
+.row-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+/* 输入框样式 */
+input, textarea, select {
+    padding: 0.5rem;
+    margin: 0;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-family: 'Handmake', sans-serif;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 1rem 1rem 0 0;
+}
+
+textarea {
+    min-width: clamp(280px, 90%, 365px);
+    min-height: 200px;
+    font-size: 1.2rem;
+}
+
+/* 调整下拉框宽度 */
+select.letRounded-select {
+    width: clamp(55px, 10%, 95px);
+}
+
+/* 特定下拉框宽度 */
+select.rounded-select {
+    width: 95px;
+}
+
+/* 调整输入框宽度 */
+input  {
+    width: clamp(150px, 20%, 230px);
+}
+
+input.morRounded-input {
+    width: clamp(120px, 20%, 230px); 
+}
+
+/* 权重输入框特殊宽度 */
+input[type="number"] {
+    width: clamp(42px, 10%, 70px);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* 按钮样式 */
+.button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Handmake', sans-serif;
+    transition: background-color 0.3s;
+}
+
+.delete-btn {
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Handmake', sans-serif;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--button-hover);
+}
+
+/* 操作按钮组 */
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.button-group .button {
+    flex: 1;
+}
+
+.panel-box {
+    margin: 0;
+}
+
+/* 设置容器文本样式 */
+.text {
+    text-indent: 2em;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    margin: 1rem 0;
+    padding: 0 1rem;
+}
+
+.text ol p {
+    text-indent: 0;
+}
+
+.text p {
+    margin: 0.8rem 0;
+}
+
+.text p.noblank  {
+    text-indent: 1rem;
+    color: #949494;
+}
+
+.panel-box {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.panel-title {
+    text-align: left;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+    font-size: 2rem;
+}
+
+.panel-divider {
+    margin: 0;
+    border: none;
+    border-top: 2px solid var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.set-box {
+    max-width: 300px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--input-border);
+    border-radius: 12px;
+    padding: 0.5rem;
+    margin: 1.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.set-box h4 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.title-switch {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.frequency-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.frequency-dropdown {
+    width: 100px;
+}
+
+#frequencySlider {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: #81C784;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+#frequencySlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: var(--primary-color);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+#frequencyValue {
+    min-width: 40px;
+    text-align: center;
+    font-family: 'Handmake', sans-serif;
+    color: var(--primary-color);
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.checkbox-wrapper-34 input[type="checkbox"] {
+    visibility: hidden;
+    display: none;
+}
+
+.checkbox-wrapper-34 .tgl {
+    display: none;
+}
+
+.checkbox-wrapper-34 .tgl,
+.checkbox-wrapper-34 .tgl:after,
+.checkbox-wrapper-34 .tgl:before,
+.checkbox-wrapper-34 .tgl *,
+.checkbox-wrapper-34 .tgl *:after,
+.checkbox-wrapper-34 .tgl *:before,
+.checkbox-wrapper-34 .tgl+.tgl-btn {
+    box-sizing: border-box;
+}
+
+.checkbox-wrapper-34 .tgl::-moz-selection,
+.checkbox-wrapper-34 .tgl:after::-moz-selection,
+.checkbox-wrapper-34 .tgl:before::-moz-selection,
+.checkbox-wrapper-34 .tgl *::-moz-selection,
+.checkbox-wrapper-34 .tgl *:after::-moz-selection,
+.checkbox-wrapper-34 .tgl *:before::-moz-selection,
+.checkbox-wrapper-34 .tgl+.tgl-btn::-moz-selection,
+.checkbox-wrapper-34 .tgl::selection,
+.checkbox-wrapper-34 .tgl:after::selection,
+.checkbox-wrapper-34 .tgl:before::selection,
+.checkbox-wrapper-34 .tgl *::selection,
+.checkbox-wrapper-34 .tgl *:after::selection,
+.checkbox-wrapper-34 .tgl *:before::selection,
+.checkbox-wrapper-34 .tgl+.tgl-btn::selection {
+    background: none;
+}
+
+.checkbox-wrapper-34 .tgl+.tgl-btn {
+    outline: 0;
+    display: inline-block;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-wrapper-34 .tgl+.tgl-btn:after,
+.checkbox-wrapper-34 .tgl+.tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+}
+
+.checkbox-wrapper-34 .tgl+.tgl-btn:after {
+    left: 0;
+}
+
+.checkbox-wrapper-34 .tgl+.tgl-btn:before {
+    display: none;
+}
+
+.checkbox-wrapper-34 .tgl:checked+.tgl-btn:after {
+    left: 50%;
+}
+
+.checkbox-wrapper-34 .tgl-ios+.tgl-btn {
+    background: #fbfbfb;
+    border-radius: 2em;
+    padding: 2px;
+    transition: all .4s ease;
+    border: 1px solid #e8eae9;
+    margin-left: 1rem;
+    
+}
+
+.checkbox-wrapper-34 .tgl-ios+.tgl-btn:after {
+    border-radius: 2em;
+    background: #fbfbfb;
+    transition:
+        left .3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        padding .3s ease, margin .3s ease;
+    box-shadow:
+        0 0 0 1px rgba(0,0,0,.1),
+        0 4px 0 rgba(0,0,0,.08);
+}
+
+.checkbox-wrapper-34 .tgl-ios+.tgl-btn:hover:after {
+    will-change: padding;
+}
+
+.checkbox-wrapper-34 .tgl-ios+.tgl-btn:active {
+    box-shadow: inset 0 0 0 2em #e8eae9;
+}
+
+.checkbox-wrapper-34 .tgl-ios+.tgl-btn:active:after {
+    padding-right: .8em;
+}
+
+.checkbox-wrapper-34 .tgl-ios:checked+.tgl-btn {
+    background: var(--primary-color);
+}
+
+.checkbox-wrapper-34 .tgl-ios:checked+.tgl-btn:active {
+    box-shadow: none;
+}
+
+.checkbox-wrapper-34 .tgl-ios:checked+.tgl-btn:active:after {
+    margin-left: -.8em;
+}
