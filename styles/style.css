@@ -313,7 +313,8 @@ input:focus, textarea:focus, select:focus {
     border-radius: 4px;
     background: #81C784;
     outline: none;
-    -webkit-appearance: none;
+-webkit-appearance: none;
+appearance: none;
 }
 
 #frequencySlider::-webkit-slider-thumb {

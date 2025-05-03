@@ -1,19 +1,19 @@
-// 输出界面功能
-// 创建主容器div，用于存放所有控件
+// 这里是生成结果的界面
+// 先做个大盒子放所有东西
 const outputContainer = document.createElement('div');
 outputContainer.id = 'output';
 
-// 创建下拉框行容器
+// 放选择框的那一行
 const selectRow = document.createElement('div');
 selectRow.className = 'output-row';
 selectRow.id = 'selectRow';
 
-// 创建按钮行容器
+// 放按钮的那一行
 const buttonRow = document.createElement('div');
 buttonRow.className = 'output-row';
 buttonRow.id = 'buttonRow';
 
-// 创建排布方式下拉菜单
+// 选择怎么排列的下拉框
 const layoutSelect = document.createElement('select');
 layoutSelect.className = 'rounded-select';
 layoutSelect.id = 'layoutSelect';
@@ -22,7 +22,7 @@ layoutSelect.innerHTML = `
   <option value="inline">同行排布</option>
 `;
 
-// 创建间隔方式下拉菜单
+// 选择用什么分开的下拉框
 const spacingSelect = document.createElement('select');
 spacingSelect.className = 'rounded-select';
 spacingSelect.id = 'spacingSelect';
@@ -33,7 +33,7 @@ spacingSelect.innerHTML = `
   <option value="semicolon">分号间隔</option>
 `;
 
-// 创建数量输入框
+// 输入要生成多少个的框
 const quantityInput = document.createElement('input');
 quantityInput.className = 'rounded-input';
 quantityInput.type = 'number';
@@ -43,13 +43,13 @@ quantityInput.step = '1';
 quantityInput.value = '5';
 quantityInput.placeholder = '数量';
 
-// 创建生成按钮
+// 点这个按钮开始生成
 const generateButton = document.createElement('button');
 generateButton.className = 'button';
 generateButton.id = 'generate';
 generateButton.textContent = '生成';
 
-// 创建复制按钮
+// 点这个复制结果
 const copyButton = document.createElement('button');
 copyButton.className = 'button';
 copyButton.id = 'copy';
@@ -65,7 +65,7 @@ copyButton.addEventListener('click', () => {
     }, 500);
 });
 
-// 创建导出按钮
+// 点这个保存到文件
 const exportButton = document.createElement('button');
 exportButton.className = 'button';
 exportButton.id = 'export';
@@ -76,7 +76,7 @@ exportButton.addEventListener('click', () => {
     const content = outputBox.value;
     if (!content) return;
     
-    // 获取当前时间并格式化为年月日时分秒
+    // 记下现在的时间
     const now = new Date();
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -85,13 +85,13 @@ exportButton.addEventListener('click', () => {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
     
-    // 获取数量
+    // 看看要生成多少个
     const quantity = document.getElementById('quantity').value;
     
-    // 创建文件名
+    // 给文件起个名字
     const fileName = `${year}${month}${day}${hours}${minutes}${seconds}_${quantity}_words.txt`;
     
-    // 创建Blob对象并下载
+    // 把结果做成文件下载
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -104,31 +104,31 @@ exportButton.addEventListener('click', () => {
 });
 
 generateButton.addEventListener('click', () => {
-    // 从本地存储获取元素词典、构词法词典和元素频率词典
+    // 从浏览器里拿出之前存的东西
     const elementDict = JSON.parse(localStorage.getItem('elementDictionary')) || {};
     const morphologyDict = JSON.parse(localStorage.getItem('morphologyDictionary')) || {};
     const frequencyDict = JSON.parse(localStorage.getItem('elementFrequency')) || {};
     
-    // 检查efCheck按钮是否开启
+    // 看看频率功能开了没
     const efCheckEnabled = document.getElementById('efCheck')?.checked || false;
   
     
-    // 如果启用了元素频率功能，为每个元素添加权重
+    // 如果开了频率功能，就给每个东西加个权重
     if (efCheckEnabled && Object.keys(frequencyDict).length > 0) {
     
       
-      // 遍历元素词典中的每个键
+      // 把每个东西都看一遍
       for (const key in elementDict) {
         const elements = elementDict[key];
         const weightedElements = [];
         
-        // 为每个元素添加权重
+        // 给每个东西加个权重
         elements.forEach(element => {
           const weight = frequencyDict[element] || 0; // 默认权重为1
           weightedElements.push({ element, weight });
         });
         
-        // 对权重进行归一化处理
+        // 把权重调整成0到1之间
         const totalWeight = weightedElements.reduce((sum, item) => sum + item.weight, 0);
         if (totalWeight > 0) {
       
@@ -143,13 +143,13 @@ generateButton.addEventListener('click', () => {
       
         }
         
-        // 替换原始元素数组为带权重的数组
+        // 换成带权重的列表
         elementDict[key] = weightedElements;
       }
     
     }
     
-    // 对构词法词典中的权重进行归一化处理
+    // 把构词法的权重也调整一下
     const weights = Object.values(morphologyDict);
     const sum = weights.reduce((a, b) => a + b, 0);
     if (sum > 0) {
@@ -158,17 +158,17 @@ generateButton.addEventListener('click', () => {
         }
     }
     
-    // 获取数量输入框的值
+    // 看看用户要生成多少个
     const quantity = parseInt(document.getElementById('quantity').value);
     
-    // 根据权重随机选择构词法规则
+    // 按权重随机选个构词法
     const rules = Object.keys(morphologyDict);
     const weightedRules = rules.map(rule => ({
         rule,
         weight: morphologyDict[rule]
     }));
     
-    // 生成待生成列表
+    // 准备要生成的东西
     const toGenerate = [];
     for (let i = 0; i < quantity; i++) {
         const random = Math.random();
@@ -184,7 +184,7 @@ generateButton.addEventListener('click', () => {
     }
   
     
-    // 生成结果列表
+    // 开始生成结果
     const results = [];
     toGenerate.forEach(rule => {
         let word = '';
@@ -200,7 +200,7 @@ generateButton.addEventListener('click', () => {
             }
             if (key === '>') {
                 inAngleBrackets = false;
-                // 处理尖括号内容
+                // 处理<>里的内容
                 let tempWord = '';
                 let inSquareBracketsInAngle = false;
                 let squareBracketContentInAngle = '';
@@ -212,7 +212,7 @@ generateButton.addEventListener('click', () => {
                     }
                     if (subKey === ']') {
                         inSquareBracketsInAngle = false;
-                        // 保留方括号内容并重复两次
+                        // []里的内容要重复两次
                         tempWord += squareBracketContentInAngle;
                         return;
                     }
@@ -222,7 +222,7 @@ generateButton.addEventListener('click', () => {
                         const elements = elementDict[subKey] || [];
                         if (elements.length > 0) {
                             if (efCheckEnabled && elements[0]?.weight) {
-                              // 根据权重随机选择元素
+                              // 按权重随机选个东西
                               const random = Math.random();
                               let cumulativeWeight = 0;
                               for (const {element, normalizedWeight} of elements) {
@@ -233,14 +233,14 @@ generateButton.addEventListener('click', () => {
                                 }
                               }
                             } else {
-                              // 均匀随机选择
+                              // 随便选一个
                               const randomIndex = Math.floor(Math.random() * elements.length);
                               tempWord += elements[randomIndex];
                             }
                         }
                     }
                 });
-                // 重复拼接两次
+                // 同样的东西拼两次
                 word += tempWord + tempWord;
                 return;
             }
@@ -262,7 +262,7 @@ generateButton.addEventListener('click', () => {
                 const elements = elementDict[key] || [];
                 if (elements.length > 0) {
                     if (efCheckEnabled && elements[0]?.weight) {
-                      // 根据权重随机选择元素
+                      // 按权重随机选个东西
                       const random = Math.random();
                       let cumulativeWeight = 0;
                       for (const {element, normalizedWeight} of elements) {
@@ -273,7 +273,7 @@ generateButton.addEventListener('click', () => {
                         }
                       }
                     } else {
-                      // 均匀随机选择
+                      // 随便选一个
                       const randomIndex = Math.floor(Math.random() * elements.length);
                       word += elements[randomIndex];
                     }
@@ -283,20 +283,20 @@ generateButton.addEventListener('click', () => {
         results.push(word);
     });
     
-    // 输出到控制台和界面
+    // 在控制台和页面上显示结果
   
     
-    // 获取排布方式和间隔方式
+    // 看看用户选了怎么排列和分开
     const layout = document.getElementById('layoutSelect').value;
     const spacing = document.getElementById('spacingSelect').value;
     
-    // 根据间隔方式选择分隔符
+    // 选个分隔符
     let separator = '';
     if (spacing === 'space') separator = ' ';
     else if (spacing === 'comma') separator = ',';
     else if (spacing === 'semicolon') separator = ';';
     
-    // 根据排布方式决定换行处理
+    // 看看要不要换行
     if (layout === 'inline') {
       outputBox.value = results.join(separator);
     } else {
@@ -304,19 +304,19 @@ generateButton.addEventListener('click', () => {
     }
 });
 
-// 将下拉框和输入框添加到下拉框行
+// 把选择框和输入框放到那一行
 selectRow.appendChild(layoutSelect);
 selectRow.appendChild(spacingSelect);
 selectRow.appendChild(quantityInput);
 outputContainer.appendChild(selectRow);
 
-// 将按钮添加到按钮行
+// 把按钮放到按钮行
 buttonRow.appendChild(generateButton);
 buttonRow.appendChild(copyButton);
 buttonRow.appendChild(exportButton);
 outputContainer.appendChild(buttonRow);
 
-// 创建输出框
+// 做个显示结果的框
 const outputBox = document.createElement('textarea');
 outputBox.className = 'output-box';
 outputBox.id = 'outputBox';
@@ -324,5 +324,5 @@ outputBox.placeholder = '单词将生成在这里...';
 outputBox.rows = 5;
 outputContainer.appendChild(outputBox);
 
-// 将容器添加到第五个panel-box
+// 把东西放到第五个面板里
 document.querySelector('.panel-box:nth-child(5)').appendChild(outputContainer);

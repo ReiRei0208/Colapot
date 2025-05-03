@@ -17,10 +17,10 @@ morphologyInput.pattern = '([A-Z]*|\\[.*\\]|\\<.*\\>)*';
 morphologyInput.oninput = function() {
   const elementDict = JSON.parse(localStorage.getItem('elementDictionary')) || {};
   
-  // 优化大写转换逻辑
+  // 把字母都变大写
   let needsUpperCase = false;
   if ((this.value.includes('[') && this.value.includes(']')) || (this.value.includes('<') && this.value.includes('>'))) {
-    // 检查方括号外的部分是否有小写字母
+    // 看看方括号外面有没有小写字母
     const parts = this.value.split(/\[[^\]]*\]/);
     needsUpperCase = parts.some(part => /[a-z]/.test(part));
   } else if (/[a-z]/.test(this.value)) {
